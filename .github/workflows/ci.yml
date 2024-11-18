@@ -16,8 +16,8 @@ jobs:
           distribution: 'oracle'
           cache: 'gradle'
 
-      - name: 🛠️ Ensure Gradle Wrapper
-        run: ./gradlew wrapper
+      - name: ⚙️ Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
       - name: 🏗️ Build with Gradle
         run: ./gradlew build
