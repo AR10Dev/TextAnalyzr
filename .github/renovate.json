@@ -1,0 +1,24 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:base", ":disableDependencyDashboard"],
+    "enabledManagers": ["gradle", "gradle-wrapper", "github-actions"],
+    "commitMessagePrefix": "📦 chore(deps):",
+    "packageRules": [
+        {
+            "matchManagers": ["gradle-wrapper"],
+            "commitMessagePrefix": "🔧 chore(gradle-wrapper):",
+            "automerge": false,
+            "prCreation": "immediate"
+        },
+        {
+            "matchUpdateTypes": ["minor", "patch", "pin", "digest", "rollback"],
+            "automerge": true,
+            "automergeType": "branch"
+        },
+        {
+            "matchUpdateTypes": ["major"],
+            "automerge": false,
+            "prCreation": "immediate"
+        }
+    ]
+}
