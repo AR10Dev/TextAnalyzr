@@ -52,3 +52,6 @@ spotless {
         googleJavaFormat()
     }
 }
+
+// Specify the version of the project
+version = "0.1.0"

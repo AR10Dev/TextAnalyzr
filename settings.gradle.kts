@@ -11,5 +11,4 @@ plugins {
 }
 
 rootProject.name = "TextAnalyzr"
-rootProject.version = "0.1.0"
 include("app")
