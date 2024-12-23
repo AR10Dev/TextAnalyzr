@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'oracle'
+          cache: 'gradle'
+
+      - name: ⚙️ Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: 🔍 Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@v4
+
+      - name: 🏗️ Build with Gradle
+        run: ./gradlew build
+
+      - name: ✅ Run tests
+        run: ./gradlew test
+
+      - name: 📦 Package JAR
+        run: ./gradlew jar
+
+      - name: 📤 Upload Release Asset
+        uses: actions/upload-artifact@v4
+        with:
+          name: textanalyzr
+          path: app/build/libs/*.jar
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📥 Download Release Asset
+        uses: actions/download-artifact@v4
+        with:
+          name: textanalyzr
+
+      - name: 📦 Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: app/build/libs/*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
