@@ -52,10 +52,10 @@ jobs:
       - name: 📥 Download Release Asset
         uses: actions/download-artifact@v4
         with:
-          name: textanalyzr.zip
+          name: textanalyzr
 
       - name: 🗜 Extract artifact
-        run: unzip textanalyzr.zip -d app/build/libs
+        run: unzip textanalyzr -d app/build/libs
 
       - name: 📦 Create GitHub Release
         uses: softprops/action-gh-release@v2
