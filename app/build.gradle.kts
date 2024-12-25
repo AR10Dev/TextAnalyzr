@@ -38,6 +38,10 @@ java {
 application {
     // Define the main class for the application.
     mainClass = "com.textanalyzr.tool"
+    // Set the application name
+    applicationName = "TextAnalyzr"
+    // Set the base name for the application
+    applicationDefaultJvmArgs = listOf("-Dapp.name=TextAnalyzr")
 }
 
 tasks.named<Test>("test") {
@@ -55,3 +59,16 @@ spotless {
 
 // Specify the version of the project
 version = "0.1.0"
+
+// Configure the JAR manifest
+tasks.jar {
+    manifest {
+        attributes(
+            "Implementation-Title" to "TextAnalyzr",
+            "Implementation-Version" to version,
+            "Main-Class" to "com.textanalyzr.tool"
+        )
+    }
+
+    archiveBaseName.set("textanalyzr")
+}

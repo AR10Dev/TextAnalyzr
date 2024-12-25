@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: textanalyzr
-          path: app/build/libs/*.jar
+          path: app/build/libs/textanalyzr-*.jar
 
   release:
     needs: build
@@ -57,6 +57,6 @@ jobs:
       - name: 📦 Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ./*.jar
+          files: textanalyzr-*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
