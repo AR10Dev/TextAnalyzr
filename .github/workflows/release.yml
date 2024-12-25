@@ -54,12 +54,9 @@ jobs:
         with:
           name: textanalyzr
 
-      - name: 🗜 Extract artifact
-        run: unzip textanalyzr -d app/build/libs
-
       - name: 📦 Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: app/build/libs/*.jar
+          files: ./*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
