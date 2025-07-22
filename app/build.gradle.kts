@@ -10,7 +10,7 @@ plugins {
     application
 
     // Apply the Spotless plugin for code formatting.
-    id("com.diffplug.spotless") version "7.2.0"
+    id("com.diffplug.spotless") version "7.2.1"
 }
 
 repositories {
