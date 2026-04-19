@@ -36,7 +36,7 @@ jobs:
         run: ./gradlew jar
 
       - name: 📤 Upload Release Asset
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: textanalyzr
           path: app/build/libs/textanalyzr-*.jar
@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: 📥 Download Release Asset
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v8
         with:
           name: textanalyzr
 
